@@ -13,6 +13,7 @@ public class MyDB {
     public String dbName = "mydb";
     public Number port = 3306;
     Connection conn = null;
+    private Statement statement = null;
     private String user = "root";
     private String password = "root";
 
@@ -40,6 +41,7 @@ public class MyDB {
         try {
             conn = DriverManager.getConnection(
                     jdbcString, connectionProps);
+            statement = conn.createStatement();
         }
         catch (SQLException e) {
             System.out.println("Błąd połączenia do bazy: " +jdbcString);
@@ -62,6 +64,16 @@ public class MyDB {
                 System.out.println("Błąd przy zamykaniu połączenia bazodanowego: " + e.getMessage());
             }
         conn = null;
+
+    }
+    public ResultSet selectData(String selectStatement) {
+        if ((conn != null) && (statement != null))
+            try {
+                return statement.executeQuery(selectStatement);
+             } catch (SQLException e) {
+                System.out.println("Błąd realizacji zapytania: " +selectStatement+ ", "+e.getMessage());
+            }
+        return null;
 
     }
 }

@@ -15,7 +15,7 @@ public class TestConnection {
         Number portNumber = 3306;
         Connection conn = null;
         Properties connectionProps = new Properties();
-        connectionProps.put("user","root");
+        connectionProps.put("user","rooast");
         connectionProps.put("password", "root");
         connectionProps.put("ServerTimezone", "Europe/Waraw");
 
